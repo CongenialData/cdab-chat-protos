@@ -1,0 +1,8 @@
+syntax = "proto3";
+option go_package = "github.com/CongenialData/cdab-chat.git/pkg/protos";
+
+package cdab.chat;
+
+message Author {
+  string name = 1;
+}

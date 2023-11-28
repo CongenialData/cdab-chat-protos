@@ -1,0 +1,37 @@
+syntax = "proto3";
+option go_package = "github.com/CongenialData/cdab-chat.git/pkg/protos";
+
+package cdab.chat;
+
+import "common.proto";
+
+enum AnswerStatus {
+  CORRECT = 0;
+  INCORRECT = 1;
+  REJECTED = 2;
+}
+
+message QuizRequest {
+  Author author = 1;
+  Answer answer = 2;
+}
+
+message QuizResponse {
+    oneof response {
+        Question question = 1;
+        AnswerStatusResponse status = 2;
+    }   
+}
+
+message Question {
+  string text = 1;
+  repeated string answers = 2;
+}
+
+message Answer {
+  string answer = 1;
+}
+
+message AnswerStatusResponse {
+  AnswerStatus status = 1;
+}

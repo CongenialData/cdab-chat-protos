@@ -1,0 +1,36 @@
+syntax = "proto3";
+option go_package = "github.com/CongenialData/cdab-chat.git/pkg/protos";
+
+package cdab.chat;
+
+import "common.proto";
+
+message ConnectionRequest {
+  string room = 1;
+}
+
+message ConnectionResponse {
+  IncomingChatMessage message = 1;
+}
+
+
+message PostMessageRequest {
+  string room = 1;
+  Author author = 2;
+  ChatMessage message = 3;
+}
+
+message PostMessageResponse {
+  string id = 1;
+}
+
+message IncomingChatMessage {
+  string id = 1;
+  uint64 timestamp = 2;
+  ChatMessage message = 3;
+  Author fromAuthor = 4;
+}
+
+message ChatMessage {
+  string message = 1;
+}

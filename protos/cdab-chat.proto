@@ -1,0 +1,13 @@
+syntax = "proto3";
+option go_package = "github.com/CongenialData/cdab-chat.git/pkg/protos";
+
+package cdab.chat;
+
+import "chat.proto";
+import "quiz.proto";
+
+service ChatService {
+  rpc ClientConnect(ConnectionRequest) returns (stream ConnectionResponse) {}
+  rpc PostMessage(PostMessageRequest) returns (PostMessageResponse) {}
+  rpc Quiz(stream QuizRequest) returns (stream QuizResponse) {}
+}
