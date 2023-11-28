@@ -1,5 +1,5 @@
 syntax = "proto3";
-option go_package = "github.com/CongenialData/cdab-chat.git/pkg/protos";
+option go_package = "github.com/CongenialData/cdab-chat-protos/pkg/pb";
 
 package cdab.chat;
 
