@@ -20,11 +20,13 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Requests a connection to a chat room.
 type ConnectionRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The name of the chat-room.
 	Room string `protobuf:"bytes,1,opt,name=room,proto3" json:"room,omitempty"`
 }
 
@@ -67,6 +69,7 @@ func (x *ConnectionRequest) GetRoom() string {
 	return ""
 }
 
+// Response to a connection request.
 type ConnectionResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

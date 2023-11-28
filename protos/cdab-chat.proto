@@ -6,8 +6,26 @@ package cdab.chat;
 import "chat.proto";
 import "quiz.proto";
 
+
+/**
+ * ChatService defines a service for chat clients to connect to. It also handles quiz requests.
+ */
 service ChatService {
+
+  /**
+  * ClientConnect is called when a client connects to the server. It returns a stream of messages
+  */
   rpc ClientConnect(ConnectionRequest) returns (stream ConnectionResponse) {}
+
+  /**
+  * PostMessage is used for broadcasting a message in a chat-room.
+  * It returns the Id of the message
+  */
   rpc PostMessage(PostMessageRequest) returns (PostMessageResponse) {}
+
+  /**
+  * Quiz is a bidirectional stream for handling quiz requests. It sends new  questions and
+  * the result of an answer. It listens to answers from the client.
+  */
   rpc Quiz(stream QuizRequest) returns (stream QuizResponse) {}
 }

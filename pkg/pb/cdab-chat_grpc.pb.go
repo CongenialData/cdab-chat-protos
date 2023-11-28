@@ -22,8 +22,16 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ChatServiceClient interface {
+	// *
+	// ClientConnect is called when a client connects to the server. It returns a stream of messages
 	ClientConnect(ctx context.Context, in *ConnectionRequest, opts ...grpc.CallOption) (ChatService_ClientConnectClient, error)
+	// *
+	// PostMessage is used for broadcasting a message in a chat-room.
+	// It returns the Id of the message
 	PostMessage(ctx context.Context, in *PostMessageRequest, opts ...grpc.CallOption) (*PostMessageResponse, error)
+	// *
+	// Quiz is a bidirectional stream for handling quiz requests. It sends new  questions and
+	// the result of an answer. It listens to answers from the client.
 	Quiz(ctx context.Context, opts ...grpc.CallOption) (ChatService_QuizClient, error)
 }
 
@@ -111,8 +119,16 @@ func (x *chatServiceQuizClient) Recv() (*QuizResponse, error) {
 // All implementations must embed UnimplementedChatServiceServer
 // for forward compatibility
 type ChatServiceServer interface {
+	// *
+	// ClientConnect is called when a client connects to the server. It returns a stream of messages
 	ClientConnect(*ConnectionRequest, ChatService_ClientConnectServer) error
+	// *
+	// PostMessage is used for broadcasting a message in a chat-room.
+	// It returns the Id of the message
 	PostMessage(context.Context, *PostMessageRequest) (*PostMessageResponse, error)
+	// *
+	// Quiz is a bidirectional stream for handling quiz requests. It sends new  questions and
+	// the result of an answer. It listens to answers from the client.
 	Quiz(ChatService_QuizServer) error
 	mustEmbedUnimplementedChatServiceServer()
 }

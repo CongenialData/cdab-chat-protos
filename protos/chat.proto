@@ -5,10 +5,15 @@ package cdab.chat;
 
 import "common.proto";
 
+/*
+ * Requests a connection to a chat room.
+ */
 message ConnectionRequest {
+  // The name of the chat-room.
   string room = 1;
 }
 
+// Response to a connection request.
 message ConnectionResponse {
   IncomingChatMessage message = 1;
 }
